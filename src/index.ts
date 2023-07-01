@@ -9,6 +9,7 @@ import db from './models/userDb';
 import getAllUsersCntrl from './controllers/getAllUsersCntrl';
 import getUserByIDCntrl from './controllers/getUserByIDCntrl';
 import postNewUserCntrl from './controllers/postNewUser';
+import putUpdateUserCntrl from './controllers/putUpdateUserCntrl';
 
 const server = http.createServer().listen(3000);
 
@@ -36,7 +37,7 @@ server.on('request',(req,res)=>{
       });
       req.on('end',()=>{
         let userData = JSON.parse(user);
-        console.log(userData);
+        putUpdateUserCntrl(res,db.updateUser(String(params.get('id')),userData));
       })
   } else {
     res.end('Wrong');

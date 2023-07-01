@@ -41,6 +41,26 @@ class UserDB implements IUserDB{
         }
         return {status:400,data:'request body does not contain required fields'}
     }
+    updateUser(id:string,body:User){
+        if(isValidUUID(id)){
+            let user = this.users.find(user=>user.id === id)
+            if(user){
+                for(let key in body){
+                    if( key == 'username' && typeof body[key] == 'string' ){
+                        user.username = body.username;
+                    } else if(key == 'age' && typeof body[key] == 'number'){
+                        user.age = body.age;
+                    } else if(key == 'hobbies' && Array.isArray(body[key])){
+                        user.hobbies.push(...body[key]);
+                    } else {
+                        return {status: 404, data:'Not a required field'}
+                    }
+                }
+                return user;
+            } else return {status: 404, data:'User not found'}
+        }
+        return {id:null,status:400,data:'userID is not valid'}
+    }
 }
 
 const db = new UserDB();
