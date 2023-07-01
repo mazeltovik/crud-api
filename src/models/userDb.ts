@@ -1,5 +1,5 @@
 import { validate as isValidUUID, v4 as uuidv4 } from 'uuid';
-import {User,IUserDB} from '../types/types'
+import {User,IUserDB, UserAndInvalidOperation} from '../types/types'
 import checkPostBody from '../helpers/checkPostBody';
 
 class UserDB implements IUserDB{
@@ -58,6 +58,17 @@ class UserDB implements IUserDB{
                 }
                 return user;
             } else return {status: 404, data:'User not found'}
+        }
+        return {id:null,status:400,data:'userID is not valid'}
+    }
+    deleteUser(id:string){
+        if(isValidUUID(id)){
+            let userIndex = this.users.findIndex((user)=>user.id === id);
+            if(~userIndex){
+                this.users.splice(userIndex,1);
+                return {id:userIndex,status:204,data:'User was deleted'}
+            }
+            return undefined;
         }
         return {id:null,status:400,data:'userID is not valid'}
     }

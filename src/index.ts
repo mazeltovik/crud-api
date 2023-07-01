@@ -1,7 +1,5 @@
 // Basic modules
 import * as http from 'http';
-import url from 'node:url';
-import querystring from 'node:querystring'
 
 // Custom modules
 
@@ -10,6 +8,7 @@ import getAllUsersCntrl from './controllers/getAllUsersCntrl';
 import getUserByIDCntrl from './controllers/getUserByIDCntrl';
 import postNewUserCntrl from './controllers/postNewUser';
 import putUpdateUserCntrl from './controllers/putUpdateUserCntrl';
+import deleteUserCntrl from './controllers/deleteUserCntrl';
 
 const server = http.createServer().listen(3000);
 
@@ -39,8 +38,12 @@ server.on('request',(req,res)=>{
         let userData = JSON.parse(user);
         putUpdateUserCntrl(res,db.updateUser(String(params.get('id')),userData));
       })
+  } else if(reqUrl.pathname == '/api/users/' && req.method == 'DELETE' && params.size == 1 && params.has('id')){
+      deleteUserCntrl(res,db.deleteUser(String(params.get('id'))));
   } else {
-    res.end('Wrong');
+      res.writeHead(404, {'Content-Type': 'application/json'});
+      res.write(JSON.stringify({data:'This endpoint is not exist'}));
+      res.end(); 
   }
 })
 

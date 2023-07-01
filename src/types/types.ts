@@ -6,7 +6,7 @@ export type User = {
 }
 
 type InvalidOperation = {
-    id?:null,
+    id?:null | number,
     status:number,
     data:string
 }
@@ -17,5 +17,7 @@ export type UserAndInvalidOperation = User | InvalidOperation
 export interface IUserDB{
     getAll():User[],
     getUserById(id:string): UserAndInvalidOperation | undefined,
-    createUser(newUser:User): UserAndInvalidOperation
+    createUser(newUser:User): UserAndInvalidOperation,
+    updateUser(id:string,body:User): UserAndInvalidOperation,
+    deleteUser(id:string): InvalidOperation | undefined
 }
