@@ -1,7 +1,7 @@
 import { IncomingMessage, ServerResponse } from "http";
-import { UserAndInvalidUUID } from "../types/types";
+import { UserAndInvalidOperation } from "../types/types";
 
-export default function getUserByIDCntrl(res:ServerResponse<IncomingMessage>, data:UserAndInvalidUUID|undefined){
+export default function getUserByIDCntrl(res:ServerResponse<IncomingMessage>, data:UserAndInvalidOperation|undefined){
     if(data && data.id){
         res.writeHead(200, {'Content-Type': 'application/json'});
         res.write(JSON.stringify(data));
