@@ -6,7 +6,8 @@
       "rootDir": "./src",
       "outDir": "dist",
       "sourceMap":true,
-    //   "esModuleInterop": true,
+      "types": ["node"],
+      "esModuleInterop": true,
     //   "forceConsistentCasingInFileNames": true,
     //   "skipLibCheck": true,
     //   "lib": ["es6"]
