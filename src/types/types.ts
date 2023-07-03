@@ -11,6 +11,9 @@ type InvalidOperation = {
     data:string
 }
 
+export type message = {
+    [key:string]:string
+}
 
 export type UserAndInvalidOperation = User | InvalidOperation
 

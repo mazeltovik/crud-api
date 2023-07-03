@@ -1,5 +1,5 @@
 import { validate as isValidUUID, v4 as uuidv4 } from 'uuid';
-import {User,IUserDB, UserAndInvalidOperation} from '../types/types'
+import { User,IUserDB } from '../types/types'
 import checkPostBody from '../helpers/checkPostBody';
 
 class UserDB implements IUserDB{
