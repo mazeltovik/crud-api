@@ -1,7 +1,7 @@
 # crud-api
 
 # Instructions
-Install all dependencies by command **npm install**. Then if you want laucn basic simple server run command **npm run start:dev**, this command will starting server in development mode on port 4000, also if you will run **npm run start:multi**  this command lauching server in multi mode, but without Cluster API. Command **npm run start:prod** will create build, but you must use this command with prefix **single** like this **npm run start:prod single** for single server and **npm run start:prod multi** for multi server.
+Install all dependencies by command **npm install**. Then if you want laucn basic simple server run command **npm run start:dev**, this command will starting server in development mode on port 4000, also if you will run **npm run start:multi**  this command lauching server in multi mode, but without Cluster API. Command **npm run start:prod** will create build, but you must use this command with prefix **single** like this **npm run start:prod single** for single server and **npm run start:prod multi** for multi server. Use this endpoint **api/user/** with slash at the end.
 
 # Scoring: CRUD API
 ### Basic Scope
